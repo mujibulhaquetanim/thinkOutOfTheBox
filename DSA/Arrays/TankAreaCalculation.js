@@ -1,8 +1,8 @@
 const areaBruteForce = function (arr) {
     let area=0;
     
-    for (let i = 0; i < arr.lenght - 1; i++) {
-        for (let j = i + 1; j < arr.lenght; j++) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
             const height = Math.min(arr[i], arr[j]);
             const width = (j - i);
             area = Math.max(area, height * width);
