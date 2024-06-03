@@ -4,7 +4,9 @@
 
 // 2. Number to String:
     let Num2Str = 5 + '2'; // 52
+    let Num2Str2 = 3 + 5 + '2'; // 82
     console.log(Num2Str); // 52
+    console.log(Num2Str2); // 82
 
 // 3. boolean to Number:
     let bool2Num = true + 1; // 2
