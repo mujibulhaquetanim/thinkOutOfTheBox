@@ -17,3 +17,5 @@ function monotonicArray(arr) {
     }
     return true;
 }
+
+console.log(monotonicArray([1, 2, 1, 4, 5]));
