@@ -11,7 +11,7 @@ var foo = "ayaain"
 function showName() {
     foo = "local variable"
     return;
-    function foo() { } //this foo will be attached to showName in the compilation time, and then, foo= "" will reassigned it to "local variable" instead of function. but if we remove foo() then foo= "" will work
+    function foo() { } //this foo will be attached to showName in the execution phase, and then, foo= "" will reassigned it to "local variable" instead of function. but if we remove foo() then foo= "" will work
 }
 showName();
 console.log(foo)
