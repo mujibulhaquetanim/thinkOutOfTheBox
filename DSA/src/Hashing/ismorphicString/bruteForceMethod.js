@@ -7,6 +7,8 @@ function bruteIsomorphicString(s, t) {
 
         let foundMultiple = false;
         for (let j = 0; j < t.length; j++) {
+            console.log(`s: ${s[j]}`)
+            console.log(`t: ${t[j]}\n`)
             if (t[j] === char2 && j !== i && s[j] !== char1) {
                 foundMultiple = true;
                 break;

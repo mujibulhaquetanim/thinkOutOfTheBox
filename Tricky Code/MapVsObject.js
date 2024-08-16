@@ -28,3 +28,10 @@ let newMap = new Map(map);
 let deepClone = structuredClone(map)
 console.log(newMap)
 console.log(deepClone)
+
+//returning an object from a function and accessing its properties using array syntax or dot notation.
+function returnObj() {
+    return { a: 1, b: 2 };
+}
+console.log(returnObj()["a"]) // 1
+console.log(returnObj().b) // 2
