@@ -35,3 +35,16 @@ function makeUser() {
 
 let user = makeUser(); //we are calling from an global scope not from any obj that is why:
 console.log(user.ref.name) //undefined as it points to an window/global obj.
+
+//to fix it:
+function makeUser() {
+    return {
+        name: "Emma",
+        ref(){
+            return this
+        }
+    }
+}
+
+let user1 = makeUser(); //it is already inside of an obj
+console.log(user1.ref().name)// Emma, because it returns the obj itself.
