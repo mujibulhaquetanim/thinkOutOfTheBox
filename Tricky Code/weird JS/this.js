@@ -12,7 +12,7 @@ RootObj = {
     name: "RootObj",
     ReferRootObj() {
         let name = "RootFunc"
-        return this.name;      
+        return this.name;
     },
 
     LocalObj: () => {
@@ -24,3 +24,14 @@ RootObj = {
 
 console.log(RootObj.ReferRootObj())//RootObj, as it refers to immediate parent.
 console.log(RootObj.LocalObj()) //undefined, as it refers to global obj, where it was defined.
+
+//tricky exception:
+function makeUser() {
+    return {
+        name: "Emma",
+        ref: this
+    }
+}
+
+let user = makeUser(); //we are calling from an global scope not from any obj that is why:
+console.log(user.ref.name) //undefined as it points to an window/global obj.
