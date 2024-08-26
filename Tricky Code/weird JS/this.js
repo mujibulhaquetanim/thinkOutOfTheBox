@@ -28,13 +28,29 @@ RootObj = {
     arrowFunc() {
         let name = "arrowFunc";
         return () => this.name; //
+    },
+
+    childObj: {
+        name: "childObj",
+        ReferChildObj() {
+            let name = "childFunc"
+            return this.name;
+        },
+
+        arrowFunc() {
+            let name = "arrowFunc"
+            return () => this.name;
+        }
+
     }
 }
 
 
-console.log(RootObj.ReferRootObj())//RootObj, as it refers to immediate parent but not its own parent.
-console.log(RootObj.LocalObj()) //undefined, as it refers to global obj, where it was defined.
-console.log(RootObj.arrowFunc()()) //RootObj, as it refers to its own parent which is RootObj.
+console.log("RootObj.ReferRootObj: " + RootObj.ReferRootObj())//RootObj, as it refers to immediate parent but not its own parent.
+console.log("RootObj.LocalObj: " + RootObj.LocalObj()) //undefined, as it refers to global obj, where it was defined.
+console.log("RootObj.arrowFunc: " + RootObj.arrowFunc()()) //RootObj, as it refers to its own parent which is RootObj.
+console.log("RootObj.childObj.ReferChildObj: " + RootObj.childObj.ReferChildObj()) //childObj, as it refers to immediate parent but not its own parent. its immediate parent is childObj now as it is inside of an obj.
+console.log("RootObj.childObj.arrowFunc: " + RootObj.childObj.arrowFunc()()) //childObj, as it refers to its own parent which is childObj.
 
 //tricky exception:
 function makeUser() {
