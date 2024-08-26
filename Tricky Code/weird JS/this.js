@@ -4,9 +4,14 @@ function getLength() {
     return this.length;
 }
 
-let arr = [getLength, 6, 9]
+const getLengthArrow = () => {
+    return this.length;
+}
 
-console.log(arr[0]()); //result: 3. because this result depends on where the function is called, as this was called in the arr[0], so it will return the length of the array, which is 3.
+let arr = [getLength, getLengthArrow, 6, 9]
+
+console.log("getLength: " + arr[0]()); //result: 3. because this result depends on where the function is called, as this was called in the arr[0], so it will return the length of the array, which is 3.
+console.log("getLengthArrow: " + arr[1]()); //undefined. because it is an arrow function and getLengthArrow is not bound to any obj, so it will return undefined.
 
 RootObj = {
     name: "RootObj",
@@ -18,12 +23,18 @@ RootObj = {
     LocalObj: () => {
         let name = "LocalFunc";
         return this.name;
+    },
+
+    arrowFunc() {
+        let name = "arrowFunc";
+        return () => this.name; //
     }
 }
 
 
-console.log(RootObj.ReferRootObj())//RootObj, as it refers to immediate parent.
+console.log(RootObj.ReferRootObj())//RootObj, as it refers to immediate parent but not its own parent.
 console.log(RootObj.LocalObj()) //undefined, as it refers to global obj, where it was defined.
+console.log(RootObj.arrowFunc()()) //RootObj, as it refers to its own parent which is RootObj.
 
 //tricky exception:
 function makeUser() {
@@ -40,7 +51,7 @@ console.log(user.ref.name) //undefined as it points to an window/global obj.
 function makeUser() {
     return {
         name: "Emma",
-        ref(){
+        ref() {
             return this
         }
     }
