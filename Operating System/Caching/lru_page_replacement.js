@@ -11,12 +11,20 @@ class lruCache{
     get(key){
         // returns the upon caching the cache:
         /*
-        - check whether the key is in the cache or not,
+        check whether the key is in the cache or not,
         - if not in the cache then return -1 meaning key doesn't exist.
         - if cache has it, then remove it and store it in a variable
         - then set it again.
         - return the variable.
         */
+
+        if(!this.cache.has(key)) return -1;
+        const value = this.cache.get(key);
+
+        this.cache.delete(key)
+        this.cache.set(key, value)
+
+        return value;
     }
 
     put(key, value){
@@ -43,3 +51,6 @@ cache.get(1);
 
 // putting new key,value in a full cache store
 cache.put(4, 'd');
+
+// getting all the keys of the cache to see the active processes in the cache after putting key-val to oversized cache.
+console.log([...cache.cache.keys()])
