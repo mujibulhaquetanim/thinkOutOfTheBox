@@ -35,11 +35,15 @@ class lruCache{
         - elseif, check if the cache size is equal to the capacity; if equal, remove the first key/index of the map
         - set the new key to the map.
         */
+
+        if(this.cache.has(key)) this.cache.delete(key);
+        else if(this.cache.size === this.capacity) this.cache.delete([...this.cache.keys()][0]);
+        this.cache.set(key, value);
     }
 }
 
 // creating an object of the class and setting its size
-const cache = lruCache(capacity)
+const cache = new lruCache(3)
 
 // putting value to the store
 cache.put(1, 'a');
@@ -50,7 +54,7 @@ cache.put(3, 'c');
 cache.get(1);
 
 // putting new key,value in a full cache store
-cache.put(4, 'd');
+cache.put(4, 'd'); // 2 was removed as it is the first element of the cache.
 
 // getting all the keys of the cache to see the active processes in the cache after putting key-val to oversized cache.
 console.log([...cache.cache.keys()])
