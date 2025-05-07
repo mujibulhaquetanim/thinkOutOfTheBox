@@ -29,3 +29,17 @@ class lruCache{
         */
     }
 }
+
+// creating an object of the class and setting its size
+const cache = lruCache(capacity)
+
+// putting value to the store
+cache.put(1, 'a');
+cache.put(2, 'b');
+cache.put(3, 'c');
+
+// making the key frequently accessed key by getting it
+cache.get(1);
+
+// putting new key,value in a full cache store
+cache.put(4, 'd');
